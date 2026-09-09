@@ -16,9 +16,9 @@ jobs:
 
       - name: Extract Flutter project
         run: |
-          unzip -o chintakaii_english_call_flutter.zip
-          cd chintakaii_english_call
-          echo "PROJECT_DIR=$PWD" >> $GITHUB_ENV
+          unzip -o chintakaii_english_call_flutter.zip -d app
+          PROJECT_DIR=$(find "$GITHUB_WORKSPACE/app" -name pubspec.yaml -printf '%h\n' | head -n 1)
+          echo "PROJECT_DIR=$PROJECT_DIR" >> $GITHUB_ENV
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
